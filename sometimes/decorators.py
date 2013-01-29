@@ -1,6 +1,9 @@
 import random
 
 
+in_percentage = lambda x: random.randint(1,100) <= x
+
+
 """
 They've done studies, you know. 50% of the time,
 it works every time.
@@ -28,6 +31,23 @@ def sometimesish(fn):
         return
     
     return wrapped
+
+
+"""
+Function has a X percentage chance of running
+"""
+def percent_of_the_time(p):
+    
+    def decorator(fn):
+        
+        def wrapped(*args, **kwargs):
+            if in_percentage(p):
+                fn(*args, **kwargs)
+            return
+        
+        return wrapped
+        
+    return decorator
 
 
 """
