@@ -18,6 +18,19 @@ def sometimes(fn):
 
 
 """
+Has a 50/50 chance of calling a function
+"""
+def sometimesish(fn):
+
+    def wrapped(*args, **kwargs):
+        if random.randint(1,2) == 1:
+            return fn(*args, **kwargs)
+        return
+    
+    return wrapped
+
+
+"""
 Do something a random amount of times
 between x & y
 """
