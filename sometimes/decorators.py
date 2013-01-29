@@ -14,10 +14,11 @@ def sometimes(fn):
         wrapped.x += 1
         if wrapped.x % 2 == 1:
             return fn(*args, **kwargs)
-        return
     
     wrapped.x = 0
     return wrapped
+
+half_the_time = sometimes
 
 
 """
@@ -28,7 +29,6 @@ def sometimesish(fn):
     def wrapped(*args, **kwargs):
         if random.randint(1,2) == 1:
             return fn(*args, **kwargs)
-        return
     
     return wrapped
 
@@ -43,11 +43,28 @@ def percent_of_the_time(p):
         def wrapped(*args, **kwargs):
             if in_percentage(p):
                 fn(*args, **kwargs)
-            return
         
         return wrapped
         
     return decorator
+
+"""
+Only 5% chance of happening
+"""
+def rarely(fn):
+    def wrapped(*args, **kwargs):
+        if in_percentage(5):
+            fn(*args, **kwargs)
+    return wrapped
+
+"""
+95% chance of happening
+"""
+def mostly(fn):
+    def wrapped(*args, **kwargs):
+        if in_percentage(95):
+            fn(*args, **kwargs)
+    return wrapped
 
 
 """
@@ -62,7 +79,6 @@ def times(x,y):
             while wrapped.min <= wrapped.max:
                 wrapped.min += 1
                 fn(*args, **kwargs)
-            return
 
         wrapped.min = x
         wrapped.max = random.randint(x,y)
