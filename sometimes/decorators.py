@@ -80,6 +80,12 @@ def times(x,y):
                 wrapped.min += 1
                 fn(*args, **kwargs)
 
+            # Reset for another go
+            wrapped.min = wrapped.x
+            wrapped.max = random.randint(wrapped.x, wrapped.y)
+
+        wrapped.x = x
+        wrapped.y = y
         wrapped.min = x
         wrapped.max = random.randint(x,y)
         
