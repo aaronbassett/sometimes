@@ -94,7 +94,7 @@ class TestSometimesDecorators(unittest.TestCase):
             self.counter += 1
 
         add_one()
-        self.assertTrue(self.counter in range(1, 5))
+        self.assertTrue(self.counter in range(1, 6))
 
     def test_times_doesnt_run(self):
         """Test that if given a range of zero times doesn't run"""
